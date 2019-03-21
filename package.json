@@ -1,0 +1,21 @@
+{
+  "name": "logstream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "local": "NODE_ENV=local ./node_modules/nodemon/bin/nodemon.js $NODE_DEBUG_OPTION index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "0.1.0-beta.2",
+    "body-parser": "^1.18.3",
+    "elasticsearch": "^15.4.1",
+    "express": "^4.16.4",
+    "kafka-node": "^4.0.2",
+    "nodemon": "^1.18.10",
+    "socket.io": "^2.2.0"
+  }
+}
