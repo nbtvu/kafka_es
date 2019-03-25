@@ -2,15 +2,13 @@ var kafka = require('kafka-node');
 var Producer = kafka.Producer;
 
 
-class OhmniKafkaProducer {
+class MyKafkaProducer {
   constructor() {
     this._client = new kafka.KafkaClient();
     this._producer = new Producer(this._client);
 
-    this._ready = false;
     this._producer.on('ready', function () {
       console.log('Producer is ready');
-      this._ready = true;
     });
 
     this._producer.on('error', function (err) {
@@ -18,23 +16,8 @@ class OhmniKafkaProducer {
       console.log(err);
     });
 
-    this.createTopic = this.createTopic.bind(this);
     this.produceNetworkStats = this.produceNetworkStats.bind(this);
   }
-
-  get ready(){
-    return this._ready;
-  }
-
-  createTopic(topic) {
-    this._producer.createTopics([topic],false,function (err, data) {
-      if (err) {
-        console.log("error create kafka topics", err);
-      } else {
-        console.log("create kafka topics successfully", data);
-      }
-    });
-  };
 
   produceNetworkStats(statsData) {
     const topic = "NetworkStats";
@@ -48,6 +31,6 @@ class OhmniKafkaProducer {
 
 }
 
-const ohmniKafkaProducer = new OhmniKafkaProducer();
+const myKafkaProducer = new MyKafkaProducer();
 
-module.exports = ohmniKafkaProducer;
+module.exports = myKafkaProducer;
